@@ -1,13 +1,13 @@
 require 'formula'
 
 class Ctags < Formula
-  url 'http://downloads.sourceforge.net/ctags/ctags-5.8.tar.gz'
   homepage 'http://ctags.sourceforge.net/'
+  url 'http://downloads.sourceforge.net/ctags/ctags-5.8.tar.gz'
   md5 'c00f82ecdcc357434731913e5b48630d'
 
   head 'https://ctags.svn.sourceforge.net/svnroot/ctags/trunk'
 
-  depends_on 'autoconf' => :build if MacOS.xcode_version.to_f >= 4.3
+  depends_on :autoconf
 
   fails_with :llvm do
     build 2335
@@ -15,7 +15,7 @@ class Ctags < Formula
   end
 
   def install
-    if ARGV.build_head?
+    if build.head?
       system "autoheader"
       system "autoconf"
     end

@@ -1,7 +1,7 @@
 require 'formula'
 
 class Thrift < Formula
-  homepage 'http://incubator.apache.org/thrift/'
+  homepage 'http://thrift.apache.org'
   head 'http://svn.apache.org/repos/asf/thrift/trunk'
   url 'http://archive.apache.org/dist/thrift/0.6.1/thrift-0.6.1.tar.gz'
   md5 'e1ec722d5f38077a23a32c4de4d4ce94'
@@ -12,7 +12,7 @@ class Thrift < Formula
     # No reason for this step is known. On Lion at least the pkg.m4 doesn't
     # even exist. Turns out that it isn't needed on Lion either. Possibly it
     # isn't needed anymore at all but I can't test that.
-    cp "/usr/X11/share/aclocal/pkg.m4", "aclocal" if MACOS_VERSION < 10.7
+    cp "#{MacOS::X11.share}/aclocal/pkg.m4", "aclocal" if MACOS_VERSION < 10.7
 
     system "./bootstrap.sh" if version == 'HEAD'
 
@@ -36,8 +36,8 @@ class Thrift < Formula
   def caveats; <<-EOS.undent
     Some bindings were not installed. You may like to do the following:
 
-        gem install thrift
-        easy_install thrift
+      gem install thrift
+      easy_install thrift
 
     Perl and PHP bindings are a mystery someone should solve.
     EOS
